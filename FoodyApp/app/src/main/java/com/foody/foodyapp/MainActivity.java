@@ -15,23 +15,22 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView result = (TextView) findViewById(R.id.scan_result);
-    Button scan = (Button) findViewById(R.id.scan);;
+    TextView result;
+    Button scan;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        scan = (Button) findViewById(R.id.scan);
+        result = (TextView) findViewById(R.id.scan_result);
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(MainPage.this, QRCodeScanner.class);
-                //startActivity(intent);
-                //finish();
-                Vibrator vib = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
+
+              /*  Vibrator vib = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
                 // Vibrate for 500 milliseconds
-                vib.vibrate(500);
+                vib.vibrate(500);*/
 
                 IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity.this);
                 intentIntegrator
