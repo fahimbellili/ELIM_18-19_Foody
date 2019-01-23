@@ -15,11 +15,13 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button button;
+
     TextView result;
     Button scan;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         scan = (Button) findViewById(R.id.scan);
@@ -43,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
                         .initiateScan();
             }
         });
+
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openActivityHistory();
+            }
+        });
     }
 
     @Override
@@ -55,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
             Log.e("SCAN", "Scan fail");
     }
 
-
+    public void openActivityHistory (){
+        Intent intent = new Intent(this, ActivityHistory.class);
+        startActivity(intent);
+    }
 
 }
