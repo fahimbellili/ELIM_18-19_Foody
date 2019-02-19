@@ -1,5 +1,7 @@
 package fr.polytech.elim_18_19_foody
 
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +12,7 @@ import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.mindorks.paracamera.Camera
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_splash.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -115,6 +118,25 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 return
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == Camera.REQUEST_TAKE_PHOTO) {
+                val bitmap = camera.cameraBitmap
+                if (bitmap != null) {
+                    imageView.setImageBitmap(bitmap)
+                    // TODO
+                } else {
+                    Toast.makeText(
+                        this.applicationContext, getString(R.string.picture_not_taken),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }
