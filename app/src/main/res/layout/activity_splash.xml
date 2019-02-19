@@ -10,7 +10,7 @@
     <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
-            android:layout_height="102dp"
+            android:layout_height="97dp"
             android:contentDescription="@string/app_name"
             android:src="@mipmap/ic_launcher_round"
             app:layout_constraintBottom_toTopOf="@+id/textView"
@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" android:layout_above="@+id/textView"
-            android:layout_marginBottom="-18dp" android:layout_alignParentEnd="true" android:layout_marginEnd="167dp"
+            android:layout_marginBottom="-13dp" android:layout_alignParentEnd="true" android:layout_marginEnd="166dp"
             android:layout_alignParentStart="true" android:layout_marginStart="170dp" android:layout_marginTop="250dp"
             android:layout_alignParentTop="true"/>
 
@@ -34,8 +34,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" android:textSize="24sp"
-            android:layout_alignParentEnd="true" android:layout_marginEnd="174dp"
-            android:layout_alignParentBottom="true" android:layout_marginBottom="365dp"
-            android:layout_alignParentStart="true" android:layout_marginStart="171dp"/>
+            android:layout_alignParentEnd="true" android:layout_marginEnd="170dp"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="364dp"
+            android:layout_alignParentStart="true" android:layout_marginStart="174dp"/>
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package fr.polytech.elim_18_19_foody
 
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +12,7 @@ import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.mindorks.paracamera.Camera
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_splash.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -91,6 +94,50 @@ class MainActivity : AppCompatActivity() {
                 ), PERMISSION_REQUEST_CODE
             )
             return
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
+        when (requestCode) {
+            PERMISSION_REQUEST_CODE -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    try {
+                        camera.takePicture()
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            this.applicationContext, getString(R.string.error_taking_picture),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                return
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == Camera.REQUEST_TAKE_PHOTO) {
+                val bitmap = camera.cameraBitmap
+                if (bitmap != null) {
+                    imageView.setImageBitmap(bitmap)
+                    // TODO
+                } else {
+                    Toast.makeText(
+                        this.applicationContext, getString(R.string.picture_not_taken),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
     }
 }
