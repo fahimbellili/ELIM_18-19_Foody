@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "793211116713",
+    "firebase_url": "https://foodyandroidapp.firebaseio.com",
+    "project_id": "foodyandroidapp",
+    "storage_bucket": "foodyandroidapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793211116713:android:940b7f19759508fe",
+        "android_client_info": {
+          "package_name": "fr.polytech.elim_18_19_foody"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793211116713-mpmeiig3106v3upi47op58lqtikao45p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA56JxvetyX3Xp9pBxTes2zkI3i-rqSQ54"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
