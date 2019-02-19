@@ -93,4 +93,29 @@ class MainActivity : AppCompatActivity() {
             return
         }
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
+        when (requestCode) {
+            PERMISSION_REQUEST_CODE -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    try {
+                        camera.takePicture()
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            this.applicationContext, getString(R.string.error_taking_picture),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                return
+            }
+        }
+    }
 }
