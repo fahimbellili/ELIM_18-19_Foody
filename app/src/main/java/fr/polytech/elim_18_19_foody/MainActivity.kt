@@ -3,6 +3,8 @@ package fr.polytech.elim_18_19_foody
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -10,9 +12,11 @@ import android.support.v4.app.ActivityCompat
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
+import com.google.firebase.ml.vision.FirebaseVision
+import com.google.firebase.ml.vision.common.FirebaseVisionImage
+import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceImageLabelerOptions
 import com.mindorks.paracamera.Camera
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_splash.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -130,7 +134,7 @@ class MainActivity : AppCompatActivity() {
                 val bitmap = camera.cameraBitmap
                 if (bitmap != null) {
                     imageView.setImageBitmap(bitmap)
-                    // TODO
+                    detectDeliciousFoodOnDevice(bitmap)
                 } else {
                     Toast.makeText(
                         this.applicationContext, getString(R.string.picture_not_taken),
@@ -139,5 +143,55 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+    private fun displayResultMessage(hasDeliciousFood: Boolean) {
+        responseCardView.visibility = View.VISIBLE
+
+        if (hasDeliciousFood) {
+            responseCardView.setCardBackgroundColor(Color.GREEN)
+            responseTextView.text = getString(R.string.delicious_food)
+        } else {
+            responseCardView.setCardBackgroundColor(Color.RED)
+            responseTextView.text = getString(R.string.not_delicious_food)
+        }
+    }
+
+    private fun hasDeliciousFood(items: List<String>): Boolean {
+        for (result in items) {
+            if (result.contains("Food", true))
+                return true
+        }
+        return false
+    }
+
+    private fun detectDeliciousFoodOnDevice(bitmap: Bitmap) {
+        progressBar.visibility = View.VISIBLE
+        val image = FirebaseVisionImage.fromBitmap(bitmap)
+        val options = FirebaseVisionOnDeviceImageLabelerOptions.Builder()
+            .setConfidenceThreshold(0.8f)
+            .build()
+        val detector = FirebaseVision.getInstance().getOnDeviceImageLabeler(options)
+
+        detector.processImage(image)
+            .addOnSuccessListener {
+
+                progressBar.visibility = View.INVISIBLE
+
+                if (hasDeliciousFood(it.map { it.text })) {
+                    displayResultMessage(true)
+                } else {
+                    displayResultMessage(false)
+                }
+            }
+            .addOnFailureListener {
+                progressBar.visibility = View.INVISIBLE
+                Toast.makeText(
+                    this.applicationContext, getString(R.string.error),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
     }
 }
