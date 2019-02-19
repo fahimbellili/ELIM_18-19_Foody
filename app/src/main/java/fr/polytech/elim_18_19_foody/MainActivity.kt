@@ -14,6 +14,7 @@ import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
+import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
 import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceImageLabelerOptions
 import com.mindorks.paracamera.Camera
 import kotlinx.android.synthetic.main.activity_main.*
@@ -134,7 +135,8 @@ class MainActivity : AppCompatActivity() {
                 val bitmap = camera.cameraBitmap
                 if (bitmap != null) {
                     imageView.setImageBitmap(bitmap)
-                    detectDeliciousFoodOnDevice(bitmap)
+                    //detectDeliciousFoodOnDevice(bitmap)
+                    detectDeliciousFoodOnCloud(bitmap)
                 } else {
                     Toast.makeText(
                         this.applicationContext, getString(R.string.picture_not_taken),
@@ -184,6 +186,40 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     displayResultMessage(false)
                 }
+            }
+            .addOnFailureListener {
+                progressBar.visibility = View.INVISIBLE
+                Toast.makeText(
+                    this.applicationContext, getString(R.string.error),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+    }
+
+
+    private fun detectDeliciousFoodOnCloud(bitmap: Bitmap) {
+        // TODO: provide an implementation
+        progressBar.visibility = View.VISIBLE
+        val image = FirebaseVisionImage.fromBitmap(bitmap)
+        val options = FirebaseVisionCloudImageLabelerOptions.Builder()
+            //.setMaxResults(10)
+            .build()
+        val detector = FirebaseVision.getInstance()
+            //1
+            .getCloudImageLabeler(options)
+
+        detector.processImage(image)
+            .addOnSuccessListener {
+
+                progressBar.visibility = View.INVISIBLE
+
+                if (hasDeliciousFood(it.map { it.text })) {
+                    displayResultMessage(true)
+                } else {
+                    displayResultMessage(false)
+                }
+
             }
             .addOnFailureListener {
                 progressBar.visibility = View.INVISIBLE
