@@ -1,7 +1,9 @@
 package fr.polytech.elim_18_19_foody
 
+import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import com.google.firebase.FirebaseApp
 import com.mindorks.paracamera.Camera
 
@@ -28,4 +30,13 @@ class MainActivity : AppCompatActivity() {
             .setCompression(75)
             .build(this)
     }
+
+
+    private fun hasPermission(permission: String): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            this,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+    
 }
