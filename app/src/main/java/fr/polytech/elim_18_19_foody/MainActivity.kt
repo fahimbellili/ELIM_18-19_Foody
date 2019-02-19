@@ -35,6 +35,27 @@ class MainActivity : AppCompatActivity() {
             .build(this)
     }
 
+    fun takePicture(view: View) {
+        // provide an implementation
+        if (!hasPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
+            !hasPermission(android.Manifest.permission.CAMERA)
+        ) {
+            // If do not have permissions then request it
+            requestPermissions()
+        } else {
+            // else all permissions granted, go ahead and take a picture using camera
+            try {
+                camera.takePicture()
+            } catch (e: Exception) {
+                // Show a toast for exception
+                Toast.makeText(
+                    this.applicationContext, getString(R.string.error_taking_picture),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
     private fun hasPermission(permission: String): Boolean {
         return ActivityCompat.checkSelfPermission(
             this,
@@ -43,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestPermissions() {
-        // TODO: provide an implementation
+        // provide an implementation
         if (ActivityCompat.shouldShowRequestPermissionRationale(
                 this,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE
