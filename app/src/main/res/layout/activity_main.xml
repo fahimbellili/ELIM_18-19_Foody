@@ -26,13 +26,14 @@
     <android.support.v7.widget.CardView
             android:id="@+id/responseCardView"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="66dp"
             android:visibility="invisible"
             app:cardBackgroundColor="@android:color/holo_blue_dark"
             app:cardCornerRadius="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="53dp"
+            android:layout_alignParentTop="true">
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -59,7 +60,7 @@
     <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="686dp"
+            android:layout_height="684dp"
             android:cropToPadding="false"
             android:scaleType="centerCrop"
             android:visibility="visible"
@@ -68,8 +69,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" android:contentDescription="@string/todo"
             android:layout_alignParentEnd="true" android:layout_marginEnd="0dp" android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp" android:layout_above="@+id/button" android:layout_marginBottom="-3dp"
-            android:layout_marginTop="-64dp" android:layout_below="@+id/responseCardView"/>
+            android:layout_marginStart="0dp" android:layout_above="@+id/button" android:layout_marginBottom="-1dp"
+            android:layout_marginTop="-119dp" android:layout_below="@+id/responseCardView"/>
 
     <ProgressBar
             android:id="@+id/progressBar"
@@ -87,6 +88,14 @@
             app:layout_constraintTop_toTopOf="@+id/imageView" android:layout_alignEnd="@+id/responseCardView"
             android:layout_alignParentStart="true" android:layout_above="@+id/button"
             android:layout_below="@+id/responseCardView"/>
+    <Button
+            android:text="Se déconnecter"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content" android:id="@+id/sign_out_button" android:layout_marginTop="3dp"
+            android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+            android:layout_marginStart="266dp" android:layout_alignParentEnd="true" android:layout_marginEnd="0dp"
+            android:textAlignment="center" android:visibility="visible"
+            style="@style/Widget.AppCompat.Button.Colored"/>
 
 
 </RelativeLayout>
