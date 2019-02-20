@@ -25,8 +25,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
-        <!-- Splash Activity -->
-        <activity android:name=".SplashActivity">
+        <!-- SignInActtivity -->
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

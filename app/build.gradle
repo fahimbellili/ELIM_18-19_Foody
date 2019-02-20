@@ -44,5 +44,12 @@ dependencies {
     // Para Camera
     implementation 'com.mindorks:paracamera:0.2.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    //firebase
+    implementation 'com.google.firebase:firebase-core:16.0.7'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+
+    //play service auth
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 }
 apply plugin: 'com.google.gms.google-services'

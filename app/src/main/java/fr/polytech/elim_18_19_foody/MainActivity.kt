@@ -1,6 +1,7 @@
 package fr.polytech.elim_18_19_foody
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -23,6 +24,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var camera: Camera
     private val PERMISSION_REQUEST_CODE = 1
+
+    companion object {
+        fun getLaunchIntent(from: Context) = Intent(from, MainActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
+    }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -199,7 +207,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun detectDeliciousFoodOnCloud(bitmap: Bitmap) {
-        // TODO: provide an implementation
+        // provide an implementation
         progressBar.visibility = View.VISIBLE
         val image = FirebaseVisionImage.fromBitmap(bitmap)
         val options = FirebaseVisionCloudImageLabelerOptions.Builder()
