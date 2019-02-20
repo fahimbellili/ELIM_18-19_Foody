@@ -15,6 +15,7 @@
       },
       "oauth_client": [
         {
+<<<<<<< Updated upstream
           "client_id": "234141256636-tt5monl4pkqtmjeh0j4hfkfuifh8gfit.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -24,6 +25,17 @@
         },
         {
           "client_id": "234141256636-9to2ig28jcg1befds9a9a93f3buoo9h3.apps.googleusercontent.com",
+=======
+          "client_id": "793211116713-b38q13djche0po0epjvrmb1f7a61qnng.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.polytech.foody",
+            "certificate_hash": "32b71c3bcf39d31c4f7b95ac4a83c6f87b22cb12"
+          }
+        },
+        {
+          "client_id": "793211116713-mpmeiig3106v3upi47op58lqtikao45p.apps.googleusercontent.com",
+>>>>>>> Stashed changes
           "client_type": 3
         }
       ],
@@ -40,7 +52,11 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
+<<<<<<< Updated upstream
               "client_id": "234141256636-9to2ig28jcg1befds9a9a93f3buoo9h3.apps.googleusercontent.com",
+=======
+              "client_id": "793211116713-mpmeiig3106v3upi47op58lqtikao45p.apps.googleusercontent.com",
+>>>>>>> Stashed changes
               "client_type": 3
             }
           ]
