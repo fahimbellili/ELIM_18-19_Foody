@@ -76,7 +76,7 @@ class SignInActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
-                Toast.makeText(this, "Google sign in failed:(", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Echec d'authentification !", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -88,7 +88,7 @@ class SignInActivity : AppCompatActivity() {
 
                 startActivity(MainActivity.getLaunchIntent(this))
             } else {
-                Toast.makeText(this, "Google sign in failed:(", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Echec d'authentification !", Toast.LENGTH_LONG).show()
             }
         }
     }
