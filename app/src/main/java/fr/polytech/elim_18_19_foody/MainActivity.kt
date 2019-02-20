@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setupUI()
 
         // Init Firebase
         FirebaseApp.initializeApp(this)
@@ -237,5 +240,16 @@ class MainActivity : AppCompatActivity() {
                 ).show()
 
             }
+    }
+
+    private fun setupUI() {
+        sign_out_button.setOnClickListener {
+            signOut()
+        }
+    }
+
+    private fun signOut() {
+        startActivity(SignInActivity.getLaunchIntent(this))
+        FirebaseAuth.getInstance().signOut();
     }
 }
